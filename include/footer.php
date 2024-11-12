@@ -1,5 +1,6 @@
 <footer class="footer v__1">
-        <div class="container">
+        <div class="container"> 
+            <!-- bgfft -->
             <div class="row g-5">
                 <div class="col-lg-4 col-md-4 col-sm-3">
                     <div class="footer__widget">
