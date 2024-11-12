@@ -53,7 +53,7 @@ include('include/header.php');
             <input type="email" id="email" name="faculty_email" required>
 
             <label for="pan">PAN:</label>
-            <input type="text" id="pan" name="faculty_pan" required>
+            <input type="text" id="pan" name="faculty_pan" required pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$">
 
             <label for="department">Department:</label>
             <select id="department" name="faculty_department" required>
@@ -74,7 +74,7 @@ include('include/header.php');
         </div>
         <div style="flex: 1; min-width: 350px;">
             <label for="employeeId">Employee ID:</label>
-            <input type="number" id="employeeId" name="faculty_employeeId" required>
+            <input type="number" id="employeeId" name="faculty_employeeId" required pattern="^[0-9]{4}$">
 
             <label for="joiningDate">Joining Date:</label>
             <input type="date" id="joiningDate" name="faculty_joiningDate" required>
@@ -102,36 +102,69 @@ include('include/header.php');
     </form>
 </div>
 <script>
+
     document.getElementById('teacherForm').onsubmit = function() {
-        const dob = new Date(document.getElementById('dob').value);
-        const joiningDate = new Date(document.getElementById('joiningDate').value);
-        const promotionDate = new Date(document.getElementById('promotionDate').value);
-        const currentYear = new Date().getFullYear();
+    // Retrieve form field values
+    const name = document.getElementById('name').value.trim();
+    const dob = new Date(document.getElementById('dob').value);
+    const mobile = document.getElementById('mobile').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pan = document.getElementById('pan').value.trim();
+    const joiningDate = new Date(document.getElementById('joiningDate').value);
+    const promotionDate = new Date(document.getElementById('promotionDate').value);
+    const currentYear = new Date().getFullYear();
 
-        // Validate Date of Birth
-        if (dob.getFullYear() > currentYear) {
-            alert("Date of Birth must be in the past.");
-            return false;
-        }
+    // Validate Name
+    if (!/^[A-Za-z\s]+$/.test(name)) {
+        alert("Name must contain only alphabets and spaces.");
+        return false;
+    }
 
-        // Validate Joining Date
-        if (joiningDate.getFullYear() < 2000 || joiningDate.getFullYear() > currentYear) {
-            alert("Joining Date must be after the year 2000 and before the current year.");
-            return false;
-        }
+    // Validate Date of Birth
+    const minYear = 1960;
+    if (dob.getFullYear() < minYear) {
+        alert("Date of Birth must be after 1960.");
+        return false;
+    }
 
-        // Validate Promotion Date
-        if (promotionDate.getFullYear() < 2000 || promotionDate.getFullYear() > currentYear || promotionDate <= joiningDate) {
-            alert("Promotion Date must be after the year 2000, before the current year, and after the Joining Date.");
-            return false;
-        }
+    // Validate Mobile Number
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("Mobile number must be 10 digits.");
+        return false;
+    }
 
-        alert("Form submitted successfully.");
-        return true;
-    };
+    // Validate Email
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(email)) {
+        alert("Invalid email address.");
+        return false;
+    }
+
+    // Validate Joining Date
+    if (joiningDate.getFullYear() < 2000 || joiningDate.getFullYear() > currentYear) {
+        alert("Joining Date must be after the year 2000 and before the current year.");
+        return false;
+    }
+
+    // Validate Promotion Date
+    if (promotionDate.getFullYear() < 2000 || promotionDate.getFullYear() > currentYear || promotionDate <= joiningDate) {
+        alert("Promotion Date must be after the year 2000, before the current year, and after the Joining Date.");
+        return false;
+    }
+
+    // Validate PAN Number
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    if (!panRegex.test(pan)) {
+        alert("Invalid PAN number format.");
+        return false;
+    }
+
+    // If all validations pass
+    alert("Form submitted successfully.");
+    return true;
+};
 </script>
     
-    <!-- form area end -->
 <br>
 
 <?php

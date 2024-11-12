@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $siteTitle = "www.faculty.com |welcome to skit";
-$siteURL = "http://".$_SERVER['HTTP_HOST']."/skit_faculty";
+$siteURL = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork";
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
