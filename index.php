@@ -47,7 +47,7 @@ include('include/header.php');
             <input type="date" id="dob" name="faculty_dob" required>
 
             <label for="mobile">Mobile No:</label>
-            <input type="tel" id="mobile" name="faculty_mobile" required pattern="^[1-9][0-9]{9}$">
+            <input type="tel" id="mobile" name="faculty_mobile" placeholder ="+91"required pattern="^[6-9][0-9]{9}$">
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="faculty_email" required>
@@ -63,18 +63,17 @@ include('include/header.php');
                 <option value="IOT">Internet of Things</option>
                 <option value="AI">Artificial Intelligence</option>
             </select>
-
             <label for="designation">Designation:</label>
             <select id="designation" name="faculty_designation" required>
                 <option value="">Select Designation</option>
                 <option value="Professor">Professor</option>
-                <option value="Assistant Professor">Assistant Professor</option>
-                <option value="Lecturer">Lecturer</option>
+                <option value="Assistant Professor">Assistant Professor-1</option>
+                <option value="Assistant Professor">Assistant Professor-2</option>                
             </select>
         </div>
         <div style="flex: 1; min-width: 350px;">
-            <label for="employeeId">Employee ID:</label>
-            <input type="number" id="employeeId" name="faculty_employeeId" required pattern="^[0-9]{4}$">
+<label for="employeeId">Employee ID:</label>
+<input type="number" id="employeeId" name="faculty_employeeId" required min="1" max="9999">
 
             <label for="joiningDate">Joining Date:</label>
             <input type="date" id="joiningDate" name="faculty_joiningDate" required>
@@ -122,10 +121,12 @@ include('include/header.php');
 
     // Validate Date of Birth
     const minYear = 1960;
-    if (dob.getFullYear() < minYear) {
-        alert("Date of Birth must be after 1960.");
-        return false;
-    }
+const maxYear = 2001;
+
+if (dob.getFullYear() < minYear || dob.getFullYear() > maxYear) {
+    alert("Date of Birth must be between 1960 and 2001.");
+    return false;
+}
 
     // Validate Mobile Number
     if (!/^[0-9]{10}$/.test(mobile)) {
@@ -134,7 +135,7 @@ include('include/header.php');
     }
 
     // Validate Email
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
         alert("Invalid email address.");
         return false;
