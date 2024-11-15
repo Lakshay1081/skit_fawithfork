@@ -11,8 +11,8 @@ define("USER", "root");
 define("DATABASE", "db_sabjiwala");
 define("PASS", "");
 
-$path = "http://".$_SERVER['HTTP_HOST']."/www.sabjiwala.com/admin-manager.sabjiwala.com";
-$web = "http://".$_SERVER['HTTP_HOST']."/www.sabjiwala.com/website";
+$path = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork/www.skitteacher.com";
+$web = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork/www.teacheradmin.com";
 
 // Base URL
 define("BASEURL", $path);

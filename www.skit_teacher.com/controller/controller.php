@@ -11,7 +11,6 @@ $faculty_designation = mysqli_real_escape_string($conn, $_REQUEST['faculty_desig
 $faculty_employeeId = mysqli_real_escape_string($conn, $_REQUEST['faculty_employeeId']);
 $faculty_promotionDate = mysqli_real_escape_string($conn, $_REQUEST['faculty_promotionDate']);
 $faculty_joiningDate = mysqli_real_escape_string($conn, $_REQUEST['faculty_joiningDate']);
-// $faculty_salarySlip = mysqli_real_escape_string($conn, isset($_REQUEST['faculty_salarySlip']) ? $_REQUEST['faculty_salarySlip'] : '');
 $faculty_joiningReport = $_FILES['faculty_joiningReport']['name'];
 $uploadpath = '../assets/upload/';
 $faculty_joiningReport = $uploadpath . $faculty_joiningReport;
@@ -30,7 +29,7 @@ $faculty_universityName = mysqli_real_escape_string($conn, $_REQUEST['faculty_un
 	$faculty_universityName =$_REQUEST['faculty_universityName'];
 
 	if(move_uploaded_file($_FILES['faculty_joiningReport']['tmp_name'], $faculty_joiningReport)){
-		mysqli_query($conn, "INSERT INTO booking(faculty_name , faculty_dob ,faculty_email ,faculty_mobile ,faculty_pan ,faculty_department ,faculty_designation ,faculty_employeeId ,faculty_promotionDate ,faculty_joiningDate ,faculty_salarySlip ,faculty_joiningReport ,faculty_offerLetter ,faculty_highestQualification , faculty_universityName)VALUES('$faculty_name' , '$faculty_dob' ,'$faculty_email' ,'$faculty_mobile ','$faculty_pan' ,'$faculty_department' ,'$faculty_designation' ,'$faculty_employeeId' ,'$faculty_promotionDate' ,'$faculty_joiningDate' ,'$faculty_salarySlip' ,'$faculty_joiningReport' ,'$faculty_offerLetter' ,'$faculty_highestQualification' , '$faculty_universityName')");			
+		mysqli_query($conn, "INSERT INTO booking(faculty_name , faculty_dob ,faculty_email ,faculty_mobile ,faculty_pan ,faculty_department ,faculty_designation ,faculty_employeeId ,faculty_promotionDate ,faculty_joiningDate ,faculty_joiningReport ,faculty_offerLetter ,faculty_highestQualification , faculty_universityName)VALUES('$faculty_name' , '$faculty_dob' ,'$faculty_email' ,'$faculty_mobile ','$faculty_pan' ,'$faculty_department' ,'$faculty_designation' ,'$faculty_employeeId' ,'$faculty_promotionDate' ,'$faculty_joiningDate'  ,'$faculty_joiningReport' ,'$faculty_offerLetter' ,'$faculty_highestQualification' , '$faculty_universityName')");			
 				$_SESSION['success'] = "Your registration successfully";
 				header("location:".$siteURL."/index.php");
 	
