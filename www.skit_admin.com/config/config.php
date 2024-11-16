@@ -1,5 +1,5 @@
 <?php 
-session_start();
+// session_start();
 $siteTitle = "www.faculty.com |welcome to skit";
 $siteURL = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork/www.skit_teacher.com";
 $dbhost = 'localhost';
