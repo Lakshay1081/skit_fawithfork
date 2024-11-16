@@ -1,7 +1,7 @@
 <?php 
 // session_start();
 $siteTitle = "www.faculty.com |welcome to skit";
-$siteURL = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork/www.skit_teacher.com";
+$siteURL = "http://".$_SERVER['HTTP_HOST']."/skit_fawithfork/www.skit_admin.com/admin.php";
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
@@ -10,6 +10,6 @@ $conn =  mysqli_connect ($dbhost,$dbuser,$dbpass,$dbname);
 
 if(!$conn)
 {
-	echo"database connection error";
+	echo"database connection error";
 }
 ?>
