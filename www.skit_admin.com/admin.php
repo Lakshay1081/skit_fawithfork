@@ -12,7 +12,7 @@ $result = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title style="text-align: center;">Admin Panel</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- Optional CSS -->
 </head>
 <body>
