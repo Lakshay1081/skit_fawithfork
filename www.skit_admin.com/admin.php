@@ -33,6 +33,9 @@ $result = mysqli_query($conn, $sql);
             <th>Employee ID</th>
             <th>Joining Date</th>
             <th>Promotion Date</th>
+            <th>joining report</th>
+            <th>offer letter</th>
+            <th>highest Qualification certificate</th>
             <th>University Name</th>
             <th>Actions</th>
         </tr>
@@ -51,6 +54,9 @@ $result = mysqli_query($conn, $sql);
                         <td>{$row['faculty_employeeId']}</td>
                         <td>{$row['faculty_joiningDate']}</td>
                         <td>{$row['faculty_promotionDate']}</td>
+                        <th>joining report</th>
+                        <th>offer letter</th>
+                        <th>highest Qualification certificate</th>
                         <td>{$row['faculty_universityName']}</td>
                         <td><a href='download.php?id={$row['id']}'>Download</a></td>
                       </tr>";
