@@ -78,7 +78,6 @@ class Framwork {
             unset($_SESSION[$sessionName]);        
         }
     }
-
     public function sessionRegenerate($sessionName) {
         if(!empty($sessionName)) {
             session_regenerate_id($sessionName);
@@ -103,6 +102,8 @@ class Framwork {
     public function AutoRefereshWin($duration) {
         header("refresh:" . $duration);
     }
+
+    
 
     public function phone_validation($mobile) {
         return preg_match('/^[0-9]{10}+$/', $mobile);

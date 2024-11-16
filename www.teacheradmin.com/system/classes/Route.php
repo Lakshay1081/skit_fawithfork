@@ -32,7 +32,7 @@
             }
             else {
                 echo "Sorry ".$url[1]. " Method Not Found";
-                // $this->redirect($_GET[$url[1]]);
+                $this->redirect($_GET[$url[1]]);
             }
         }
 

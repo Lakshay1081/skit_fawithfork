@@ -6,7 +6,7 @@ $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
 $dbname = 'booking';
-$conn =  mysqli_connect ($dbhost,$dbuser,$dbpass,$dbname);
+$conn =  mysqli_connect ($dbhost,$dbuser,$dbpass,$dbname);g
 if(!$conn)
 {
 	echo"database connection error";
