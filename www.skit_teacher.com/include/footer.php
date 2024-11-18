@@ -21,10 +21,10 @@
             <!-- Social Media Section -->
             <div class="col-lg-4 col-md-4 col-sm-3 d-flex justify-content-end">
                 <ul class="footer__widget--social social">
-                    <li class="social__link"><a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FSKITJAIP%2F"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li class="social__link"><a href="https://www.instagram.com/skitjaipurofficial/?hl=en"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li class="social__link"><a href="https://in.linkedin.com/school/skit-jaipur/"><i class="fa-brands fa-linkedin"></i></a></li>
-                    <li class="social__link"><a href="https://www.youtube.com/@SKITJaipurOfficial"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li class="social__link"><a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FSKITJAIP%2F"><i class="fa fa-facebook"></i></a></li>
+                    <li class="social__link"><a href="https://www.instagram.com/skitjaipurofficial/?hl=en"><i class="fa fa-instagram"></i></a></li>
+                    <li class="social__link"><a href="https://in.linkedin.com/school/skit-jaipur/"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="social__link"><a href="https://www.youtube.com/@SKITJaipurOfficial"><i class="fa fa-youtube"></i></a></li>
                 </ul>
             </div>
         </div>
