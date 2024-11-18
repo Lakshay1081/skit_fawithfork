@@ -2,74 +2,72 @@
 include('include/header.php');
 ?>
 
-    <!-- Main Content -->
     <section class="team">
         <div class="team-card">
             <div class="card-content">
-                <h2>John Doe</h2>
-                <p>Senior Developer</p>
-                <p>2024</p>
+                <h2 class="name">Sanidhya Mehra</h2>
+                <p class="year">2nd Year</p>
             </div>
             <div class="card-image">
-                <img class="team-image" src="C:\Users\DELL\OneDrive\Pictures\Camera Roll\WIN_20221203_22_12_36_Pro.jpg" alt="John Doe">
+                <img class="team-image" src="assets\images\sanidhya.jpg" alt="John Doe">
             </div>
             <div class="social-links">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-envelope" style="margin-right: 8px;" aria-hidden="true"></i>
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
             </div>
         </div>
 
         <div class="team-card">
             <div class="card-content">
-                <h2>John Doe</h2>
-                <p>Senior Developer</p>
-                <p>2024</p>
+                <h2 class="name">Shivam Goyal</h2>
+                <p class="year">2nd Year</p>
             </div>
             <div class="card-image">
-                <img class="team-image" src="C:\Users\DELL\OneDrive\Pictures\Camera Roll\WIN_20221203_22_12_36_Pro.jpg" alt="John Doe">
+                <img class="team-image" src="assets\images\Shivam.jpg" alt="John Doe">
             </div>
             <div class="social-links">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-envelope" style="margin-right: 8px;" aria-hidden="true"></i>
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
             </div>
         </div>
 
         <div class="team-card">
             <div class="card-content">
-                <h2>Jane Smith</h2>
-                <p>Project Manager</p>
-                <p>2025</p>
+                <h2 class="name">Lakshay Pareek</h2>
+                <p class="year">2nd Year</p>
             </div>
             <div class="card-image">
-                <img class="team-image" src="https://via.placeholder.com/250" alt="Jane Smith">
+                <img class="team-image" src="assets\images\Lakshay.jpg" alt="Jane Smith">
             </div>
             <div class="social-links">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-envelope" style="margin-right: 8px;" aria-hidden="true"></i>
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
             </div>
         </div>
-
-        <!-- Add more cards here as needed -->
     </section>
 
-   <?php
+<?php
 include('include/footer.php');
 ?>
 
 <style>
-/* General reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Body and text */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+}
+
+.name{
+    color:black; !important;
+    font-size: 25px !important;
+    margin: 0px !important;
+}
+
+.year{
+    font-size: 17px !important;
+    color: ;
 }
 
 /* Header styles */
@@ -105,6 +103,7 @@ header nav h1 {
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 30px;
 }
 
 .team-card:hover {
@@ -135,7 +134,7 @@ header nav h1 {
 /* Card image styles */
 .card-image {
     width: 100%;
-    height: 100%;
+    height: 72%;
     position: relative;
     overflow: hidden;
 }
@@ -180,21 +179,6 @@ header nav h1 {
 
 .social-links .insta:hover {
     color: #C13584; /* Instagram Purple */
-}
-
-/* Footer styles */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-footer p {
-    margin: 0;
 }
 
 </style>
