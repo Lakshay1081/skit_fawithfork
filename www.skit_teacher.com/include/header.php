@@ -186,7 +186,7 @@
                         <!-- Links on the right -->
                         <div>
                             <a href="Our_teams.php">Our Team</a>
-                            <a href="index.php">Home</a>
+                            <a href="home.php">Home</a>
                             <a href="aboutus.php">About Us</a>
                         </div>
                     </div>
