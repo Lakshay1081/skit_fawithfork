@@ -1,235 +1,314 @@
-    <?php
-    include('include/header.php');
-    ?>
-    <!-- form area start  -->
-    <body class="body-no-scroll">
-    <div class="form-container" style="display: flex; flex-direction: column; align-items: center;">
+<?php
+include('include/header.php');
+require_once('api/signin_with_google/setup.php');
 
-        <!-- Centered Title -->
-        <h1 style="font-size: 40px; text-align: center;">Teacher Details Form</h1>
+?>
 
-        <form class="teacher-form" id="teacherForm" action="controller/controller.php" method="post" enctype="multipart/form-data" style="display: flex; gap: 20px; flex-wrap: wrap; width: 100%; max-width: 1200px; justify-content: center;  padding: 20px; border-radius: 8px;">
-            <style>
-                .form-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    box-sizing: border-box;
+}
 
-    .teacher-form {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        width: 100%;
-        max-width: 1200px;
-        justify-content: center;
-        padding: 20px;
-        border-radius: 8px;
-    }
+/* Container for form centering */
+.main-container {
+    flex: 1; /* Allows this section to grow and fill available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add padding for better mobile responsiveness */
+}
 
-    .teacher-form div {
-        flex: 1;
-        min-width: 350px;
-        margin-right: 40px;
-    }
+/* Sign-In Form Styles */
+.sign-in-container {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
 
-    /* Media query for tablets */
-    @media (max-width: 768px) {
-        .teacher-form {
-            flex-direction: column;
-            align-items: center;
-        }
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-        .teacher-form div {
-            width: 100%;    
-            max-width: 500px;
-        }
+.sign-in-form label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #555;
+}
 
-        h1 {
-            font-size: 30px;
-        }
-    }
+.sign-in-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
 
-    /* Media query for mobile devices */
-    @media (max-width: 320px) {
-        h1 {
-            font-size: 24px;
-            text-align: center;
-        }
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .teacher-form {
-            padding: 10px;
-        }
+.submit-btn:hover {
+    background-color: #0056b3;
+}
 
-        .teacher-form div {
-            min-width: 100%;
-            margin-right: 0;
-        }
+.additional-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
 
-        .teacher-form button {
-            width: 100%;
-        }
-    }
+.additional-links a {
+    color: #007BFF;
+    text-decoration: none;
+}
 
-                .teacher-form input[type="text"],
-                .teacher-form input[type="date"],
-                .teacher-form input[type="tel"],
-                .teacher-form input[type="email"],
-                .teacher-form input[type="number"],
-                .teacher-form input[type="file"],
-                .teacher-form select {
-                    width: 100%;
-                    height: 40px;
-                    padding: 8px;
-                    font-size: 16px;
-                    border: 1px solid black;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                }
+.additional-links a:hover {
+    text-decoration: underline;
+}
 
-                .teacher-form button {
-                    height: 40px;
-                    font-size: 16px;
-                    padding: 8px 16px;
-                    border: 1px solid black;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    background-color: #b71a00;
-                }
+.google-login {
+    margin-top: 20px;
+}
 
-                .teacher-form button:hover {
-                    background-color: #b71a34;
-                }
-            </style>
-            <div style="flex: 1; min-width: 350px; margin-right: 40px;">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="faculty_name" required pattern="[A-Za-z\s]+">
+.google-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #DB4437;
+    color: #fff;
+    border: none;
+    border-radius: 1px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="faculty_dob" required>
+.google-btn:hover {
+    background-color: #b8362d;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
 
-                <label for="mobile">Mobile No:</label>
-                <input type="tel" id="mobile" name="faculty_mobile" placeholder ="+91"required pattern="^[6-9][0-9]{9}$">
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Center vertically */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+}
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="faculty_email" required>
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-                <label for="pan">PAN:</label>
-                <input type="text" id="pan" name="faculty_pan" required pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$">
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+}
 
-                <label for="department">Department:</label>
-                <select id="department" name="faculty_department" required>
-                    <option value="">Select Department</option>
-                    <option value="CS">Computer Science</option>
-                    <option value="DS">Data Science</option>
-                    <option value="IOT">Internet of Things</option>
-                    <option value="AI">Artificial Intelligence</option>
-                </select>
-                <label for="designation">Designation:</label>
-                <select id="designation" name="faculty_designation" required>
-                    <option value="">Select Designation</option>
-                    <option value="Professor">Professor</option>
-                    <option value="Assistant Professor">Assistant Professor-1</option>
-                    <option value="Assistant Professor">Assistant Professor-2</option>                
-                </select>
-            </div>
-            <div style="flex: 1; min-width: 350px;">
-    <label for="employeeId">Employee ID:</label>
-    <input type="number" id="employeeId" name="faculty_employeeId" required min="1" max="9999">
+.modal h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
 
-                <label for="joiningDate">Joining Date:</label>
-                <input type="date" id="joiningDate" name="faculty_joiningDate" required>
+.modal form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+}
 
-                <label for="promotionDate">Promotion Date:</label>
-                <input type="date" id="promotionDate" name="faculty_promotionDate">
+.modal form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
 
-                <label for="joiningReport">Joining Report:</label>
-                <input type="file" id="joiningReport" name="faculty_joiningReport" accept=".pdf,.jpg,.jpeg,.png">
+.modal form .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-                <label for="offerLetter">Offer Letter:</label>
-                <input type="file" id="offerLetter" name="faculty_offerLetter" accept=".pdf,.jpg,.jpeg,.png">
+.modal form .submit-btn:hover {
+    background-color: #0056b3;
+}
 
-                <label for="highestQualification">Highest Qualification Certificate:</label>
-                <input type="file" id="highestQualification" name="faculty_highestQualification" accept=".pdf,.jpg,.jpeg,.png">
+/* Footer and Header are already styled in the include files */
+</style>
 
-                <label for="universityName">University Name:</label>
-                <input type="text" id="universityName" name="faculty_universityName" required pattern="[A-Za-z\s]+">
-            </div>
+<div class="main-container">
+    <div class="sign-in-container">
+        <h1 class="title">Sign In</h1>
+        <form class="sign-in-form" id="signInForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
 
-            <!-- Centered Submit Button -->
-            <div style="width: 100%; text-align: center; margin-top: 20px;">
-                <button type="submit" id="submit" name="booking" style="color: white;">Submit</button>
-            </div>
+        <div class="additional-links">
+            <a href="#" id="forgotPassword">Forgot Password?</a>
+        </div>
+
+        <div class="google-login">
+            <a class="google-btn" href="<?php echo $google->createAuthUrl();?>">Login with Google</a>
+        </div>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Forgot Password</h2>
+        <form id="resetPasswordForm">
+            <label for="resetEmail">College Email</label>
+            <input type="email" id="resetEmail" placeholder="Enter your college email" required>
+            
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" placeholder="Enter new password" required>
+            
+            <button type="submit" class="submit-btn">Reset Password</button>
         </form>
     </div>
-    <script>
+</div>
 
-        document.getElementById('teacherForm').onsubmit = function() {
-        // Retrieve form field values
-        const name = document.getElementById('name').value.trim();
-        const dob = new Date(document.getElementById('dob').value);
-        const mobile = document.getElementById('mobile').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const pan = document.getElementById('pan').value.trim();
-        const joiningDate = new Date(document.getElementById('joiningDate').value);
-        const promotionDate = new Date(document.getElementById('promotionDate').value);
-        const currentYear = new Date().getFullYear();
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+// Email validation for sign-in
+document.getElementById("signInForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const domain = "@skit.ac.in";
 
-        // Validate Name
-        if (!/^[A-Za-z\s]+$/.test(name)) {
-            alert("Name must contain only alphabets and spaces.");
-            return false;
-        }
-
-        // Validate Date of Birth
-        const minYear = 1960;
-    const maxYear = 2001;
-
-    if (dob.getFullYear() < minYear || dob.getFullYear() > maxYear) {
-        alert("Date of Birth must be between 1960 and 2001.");
-        return false;
+    if (!email.endsWith(domain)) {
+        alert(`Please use your college email (${domain}).`);
+        return;
     }
 
-        // Validate Mobile Number
-        if (!/^[0-9]{10}$/.test(mobile)) {
-            alert("Mobile number must be 10 digits.");
-            return false;
-        }
+    if (email && password) {
+        alert("Sign-In Successful!");
+    } else {
+        alert("Please fill in all the fields.");
+    }
+});
 
-        // Validate Email
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
-            alert("Invalid email address.");
-            return false;
-        }
+// Google Sign-In setup
+function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+    alert("Google Sign-In Successful!");
+}
 
-        // Validate Joining Date
-        if (joiningDate.getFullYear() < 2000 || joiningDate.getFullYear() > currentYear) {
-            alert("Joining Date must be after the year 2000 and before the current year.");
-            return false;
-        }
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "807624701047-7csc8n4u6avrdo5kji5l67p894m0um28.apps.googleusercontent.com",
+        callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(
+        document.getElementById("googleLogin"),
+        { theme: "outline", size: "large" }
+    );
+};
 
-        // Validate Promotion Date
-        if (promotionDate.getFullYear() < 2000 || promotionDate.getFullYear() > currentYear || promotionDate <= joiningDate) {
-            alert("Promotion Date must be after the year 2000, before the current year, and after the Joining Date.");
-            return false;
-        }
+// Forgot Password Modal Logic
+const modal = document.getElementById("forgotPasswordModal");
+const closeModal = document.querySelector(".modal-close");
 
-        // Validate PAN Number
-        const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-        if (!panRegex.test(pan)) {
-            alert("Invalid PAN number format.");
-            return false;
-        }
+document.getElementById("forgotPassword").addEventListener("click", function (event) {
+    event.preventDefault();
+    modal.style.display = "block";
+});
 
-        // If all validations pass
-        alert("Form submitted successfully.");
-        return true;
-    };
-    </script>
-        
-    <br>
+closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+});
 
-    <?php
-    include('include/footer.php');
+window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Reset Password Logic
+document.getElementById("resetPasswordForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const resetEmail = document.getElementById("resetEmail").value.trim();
+    const newPassword = document.getElementById("newPassword").value;
+    const domain = "@skit.ac.in";
+
+    if (!resetEmail.endsWith(domain)) {
+        alert(`Please use your college email (${domain}).`);
+        return;
+    }
+
+    if (resetEmail && newPassword) {
+        alert("Password reset successfully!");
+        modal.style.display = "none"; // Close modal on success
+    } else {
+        alert("Please fill in all the fields.");
+    }
+});
+</script>
+
+<?php
+include('include/footer.php');
+?>
