@@ -24037,7 +24037,7 @@ xclip
   color: var(--rt-primary-2);
 }
 /*===== Footer CSS ======*/
-.footer {
+/* .footer {
   background: var(--footer-bg);
   padding-top: 30px;
 }
@@ -24073,9 +24073,9 @@ xclip
   background-color: #343a40;
   padding: 10px 0;
   color: #fff;
-}
+} */
 /*======== Footer Copyright =========*/
-.copyright {
+/* .copyright {
   border-top: 1px solid var(--copyright-border);
   background: var(--footer-bg);
 }
@@ -24087,7 +24087,7 @@ xclip
 }
 .copyright__wrapper p a {
   color: var(--rt-primary-1);
-}
+} */
 
 .progress-wrap {
   position: fixed;
