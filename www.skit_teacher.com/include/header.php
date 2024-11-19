@@ -48,6 +48,11 @@
                         <h3 style="font-size: 24px; margin: 5px 0 0 0;">Management & Gramothan, Jaipur</h3>
                         <h5 style="font-size: 12px; margin: 5px 0 0 5px;">(An Autonomous Institute Affiliated to Rajasthan Technical University, Kota)</h5>
                     </div>
+                    <div style="color: black; margin-top: 10vw;">
+                        <a href="Our_teams.php" style="margin: ;">Our Team</a>
+                        <a href="index.php">Home</a>
+                        <a href="aboutus.php">About Us</a>
+                    </div>
                     <div style="flex: 0 0 auto;"></div>
                 </div>
             </div>
