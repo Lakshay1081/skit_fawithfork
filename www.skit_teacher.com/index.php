@@ -10,6 +10,68 @@
 
         <form class="teacher-form" id="teacherForm" action="controller/controller.php" method="post" enctype="multipart/form-data" style="display: flex; gap: 20px; flex-wrap: wrap; width: 100%; max-width: 1200px; justify-content: center;  padding: 20px; border-radius: 8px;">
             <style>
+                .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .teacher-form {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1200px;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .teacher-form div {
+        flex: 1;
+        min-width: 350px;
+        margin-right: 40px;
+    }
+
+    /* Media query for tablets */
+    @media (max-width: 768px) {
+        .teacher-form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .teacher-form div {
+            width: 100%;    
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+    }
+
+    /* Media query for mobile devices */
+    @media (max-width: 320px) {
+        h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .teacher-form {
+            padding: 10px;
+        }
+
+        .teacher-form div {
+            min-width: 100%;
+            margin-right: 0;
+        }
+
+        .teacher-form button {
+            width: 100%;
+        }
+    }
+
                 .teacher-form input[type="text"],
                 .teacher-form input[type="date"],
                 .teacher-form input[type="tel"],
@@ -33,7 +95,7 @@
                     border: 1px solid black;
                     border-radius: 4px;
                     cursor: pointer;
-                    background-color: #b71a00; /* Optional for button styling */
+                    background-color: #b71a00;
                 }
 
                 .teacher-form button:hover {
